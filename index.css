@@ -36,8 +36,19 @@ nav ul li a:hover{
 }
 
 
-.final_infos{
+footer {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: white;
+    color: black;
+}
 
+footer li{
+    text-decoration: none;
+}
 
-
+footer li a{
+    text-decoration: none;
 }
