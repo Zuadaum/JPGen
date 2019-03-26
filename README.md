@@ -1,1 +1,1 @@
-# GAProj
+# JPGen
