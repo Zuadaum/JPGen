@@ -4,61 +4,67 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="index.css" rel="stylesheet">
-    <script src="js/jquery-3.3.1.min.js" ></script>
-    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
-    <link rel="stylesheet" href="searchbox.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <script type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel = "stylesheet" href="index.css">
 </head>
 
 <body>
     <!-- Aqui vai o logotipo do projeto-->
-
-    <div class = "logo">
+    <!-- Essa parte do código está com problema -->
+    <!--<div class = "logo">
         <figure>
             <img src = "genetic_algo_logo.jpg">
         </figure>
-
-
-
-    </div>
+    </div> --> 
 
     <div class = "menu">
         <nav>
             <ul>
-                <li><a href = "http://www.facebook.com"> Facebook </a></li>
-                <li> Projeto </li> <!-- Aqui vão mais informações sobre o projeto-->
+                <li> <div class = "logo-menu">
+                    <!--<figure>
+                        <img src = "JPGen-logo.png">
+                    </figure> -->
+                    </div> </li> <!-- Parte do código para arrumar -->
+                <!-- <li><a style = "text-decoration: none" href = "http://www.facebook.com"> Facebook </a></li> -->
+                <li> Projeto </li> <!-- Aqui vão mais informações sobre o projeto// Link dentro da própria página -->
                 <li> História </li> <!-- Aqui vão informações relativas aos algoritmos genéticos, redes neurais etc.-->
                 <li> Contato </li> <!-- Informações de contato do grupo e do Amudi -->
             </ul>
         </nav>
-        
+    </div>
+
+    <div class = "intro-projeto">
+        <p1> Texto introdutório sobre as motivações do projeto </p1>
     </div>
 
     <!-- Aqui vão as imagens disponíveis para votação-->
-
     <div class = "wall">
-
-
-
-
-
-
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
+        <div class = "grid-item"> Imagem </div>
     </div>
 
 
     <!-- Aqui vão as informações finais: contatos e referências externas-->
-
     <footer>
-        <li><a href = "http://amudi.com.br/"> Amudi </a></li>
-        <li><a href = "contato.html"> Contato </a></li>
-        <li><a href = "http://www.facebook.com"> <img src = "faceook_logo.png"></a></li>
-        <li><a href = "sobre.html"> <!-- Sobre ou "about" o projeto--></a> Sobre </li>
+        <div class = "logo-projeto"> <!-- Logo do projeto - exemplo do site do Github--></div>
+        <div class = "lista-links">    
+            <li><a style = "text-decoration: none" href = "http://amudi.com.br/"> Amudi </a></li>
+            <li><a style = "text-decoration: none" href = "contato.html"> Contato </a></li>
+            <li><a href = "http://www.facebook.com"> <!--<img src = url(faceook_logo.png)>--></a></li>
+            <li><a href = "sobre.html"> <!-- Sobre ou "about" o projeto--></a> Sobre </li>
+            <li><a style = "text-decoration: none" href = "https://github.com/lcupertino/JPGen"> <!--<img src = url(github_logo.png)>--> </a></li>
+        </div>
     </footer>
-
-
+    
 
 </body>
 
