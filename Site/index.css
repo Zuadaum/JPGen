@@ -1,0 +1,105 @@
+body {
+    font-family: Helvetica;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: auto;
+    text-decoration: none;
+    background: url("joel-filipe-191372-unsplash.jpg") no-repeat 50% 50%;
+    background-size: cover;
+}
+
+
+/* Colocar paraxall-effect para a imagem do background -  exemplo CodeGrid */
+
+nav {
+    text-decoration: none;
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: justify;
+    display: inline-block;
+    text-align: center;
+}
+
+nav ul li .logo-menu{
+    position: absolute;
+    background: url("logo-projeto.png") no-repeat;
+    background-size: auto;
+}
+
+
+
+nav ul li{
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 20px;
+    color: white;
+    padding: 0 20px;
+}
+
+nav ul li a:hover{
+    cursor: pointer;
+}
+
+.cool-link::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    transition: width .3s;
+}
+
+.cool-link:hover::after{
+    width: 100%;
+    transition: width 3s;
+}
+.wall {
+    height: justify;
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 50px;
+    padding: 10px;
+    color: white;
+}
+
+.grid-item {
+    display: inline-grid;
+    text-align: center;
+    background-color: none;
+    border: 20px;
+    padding: 70px;
+    position: static;
+}
+
+
+footer {
+    text-decoration: none;
+    position: absolute;
+    display: inline;
+    background-color: white;
+    width: 100%;
+    height: 20%;
+    color: black;
+    list-style: none;
+    text-align: center;
+}
+
+footer li{
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+footer li a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer .logo-projeto{
+    position: absolute;
+    background: url("logo-projeto.png") no-repeat;
+    background-size: auto;
+}
