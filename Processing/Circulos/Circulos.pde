@@ -23,7 +23,7 @@ void draw() {
     
     noStroke();
     
-    //Gerar forma e posicao
+    //Gerar forma e posição
     x = random(720);
     y = random(720);
     Width = random(360);
