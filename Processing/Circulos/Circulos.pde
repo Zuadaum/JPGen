@@ -2,17 +2,19 @@ float x, y;
 
 float Width, Height;
 
-float redf, greenf, bluef, opacityf;  //Variavels do fill
+float huef, satf, brightf, opacityf;  //Variavels do fill
 
 int i = 0;  //Variavel de contagem
 
 void setup() {
   
+  colorMode(HSB, 360, 100, 100, 100);
   size(720, 720);
+  background(random(360), random(100), random(100), random(100));
 }
 
 void draw() {
-  while (i < 250){
+  while (i < 200){
     
     noStroke();
     //Gerar forma e posicao
@@ -22,14 +24,14 @@ void draw() {
     Height = random(360);
     
     //Gerar cor e opacidade do fill
-    redf = random(255);
-    greenf = random(255);
-    bluef = random(255);
-    opacityf = random(255);
-    if (opacityf < 128) opacityf = 0;
+    huef = random(360);
+    satf = random(100);
+    brightf = random(100);
+    opacityf = random(100);
+    if (opacityf < 50) opacityf = 0;
     
     //Desenha a elipse
-    fill(redf, greenf, bluef, opacityf);
+    fill(huef, satf, brightf, opacityf);
     ellipse(x,y,Width,Height);
     
     i = i + 1;
