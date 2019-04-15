@@ -4,15 +4,12 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    margin-top: auto;
     text-decoration: none;
     background: url("joel-filipe-191372-unsplash.jpg") no-repeat 50% 50%;
     background-size: cover;
 }
 
-/* .logo { -- Esta parte do código é aquela que precisa ser arrumada
-    background: url("genetic_algo_logo.png");
-
-} */
 
 /* Colocar paraxall-effect para a imagem do background -  exemplo CodeGrid */
 
@@ -26,36 +23,40 @@ nav {
     text-align: center;
 }
 
+nav ul li .logo-menu{
+    position: absolute;
+    background: url("logo-projeto.png") no-repeat;
+    background-size: auto;
+}
+
+
+
 nav ul li{
     text-decoration: none;
     display: inline-block;
     margin-left: 20px;
-    /*transition: 1s;*/
     color: white;
-    padding: 2px;
+    padding: 0 20px;
 }
 
 nav ul li a:hover{
     cursor: pointer;
 }
 
-/* nav ul li .logo-menu{
-    height: justify;
-    width: 20px;
-    background: url("JPGen-logo.png");
+.cool-link::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    transition: width .3s;
 }
-*/
-/*.intro-projeto {
-    height: justify;
-    width: 100%;
-    scale: 20%;
-    background-color: white;
-    background-size: cover;
-}
-*/
 
+.cool-link:hover::after{
+    width: 100%;
+    transition: width 3s;
+}
 .wall {
-    height: 100%;
+    height: justify;
     width: 100%;
     display: inline-grid;
     grid-template-columns: auto auto auto;
@@ -69,15 +70,15 @@ nav ul li a:hover{
     text-align: center;
     background-color: none;
     border: 20px;
-    padding: 20px;
+    padding: 70px;
+    position: static;
 }
 
 
 footer {
     text-decoration: none;
     position: absolute;
-    display: inline-block;
-    /*display: flex;*/ /* Lista em linha */
+    display: inline;
     background-color: white;
     width: 100%;
     height: 20%;
@@ -89,10 +90,16 @@ footer {
 footer li{
     text-decoration: none;
     text-align: center;
-    display: inline-block; 
+    display: inline-block;
 }
 
 footer li a{
     text-decoration: none;
     cursor: pointer;
+}
+
+footer .logo-projeto{
+    position: absolute;
+    background: url("logo-projeto.png") no-repeat;
+    background-size: auto;
 }
