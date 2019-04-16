@@ -1,0 +1,102 @@
+//eu ainda tenho q anotar isso.
+float med (float[] lista){
+  int k, a; 
+  float somat = 0, med;
+  k = lista.length;
+  for (a = 0; a < k; a = a + 1){
+    somat = somat + lista[a]; 
+  }
+  med = somat/k;
+  
+  return med;
+}
+
+
+float[] quadrado (float[] l){
+  float []dif = new float [l.length];
+  float [] prov = new float [l.length];
+  int a;
+  for (a = 0; a < l.length; a = a + 1)
+    dif[a] = (l[a] - med(l));
+  arrayCopy(dif, prov); 
+  sort(prov); 
+  
+  for (a = 0; a < l.length - 1; a = a + 1)
+    dif[a] = dif[a]/prov[prov.length - 1];
+    dif[a] = sq(dif[a]);
+    
+  return dif;
+}
+
+
+float []distancia (float [] x, float [] y, float [] Width, float [] Height, float [] huef, float [] satf, float [] brightf, float [] opacityf){
+  //float xl, yl, Widthl, Heightl, huel, satl, brigthl, opacityl, b; 
+  int a;
+  float []distancia = new float [x.length];
+  for (a = 0; a < x.length - 1 ; a = a + 1)
+    distancia[a] = sqrt(quadrado (x)[a] + quadrado (y)[a] + quadrado (Width)[a] + quadrado (Height)[a] + quadrado (huef)[a] + quadrado (satf)[a] + quadrado (brightf)[a] + quadrado (opacityf)[a]);
+    
+  return distancia;
+}
+
+
+
+void setup () {
+  float xl, yl, Widthl, Heightl, huel, satl, brigthl, opacityl; 
+  int i=0, k=0;
+  
+  float[] x = new float[200];
+  float[] y = new float[200];
+
+  //Dimensões
+
+  float[] Width = new float[200];
+  float[] Height = new float[200];
+
+  //Variáveis do fill
+
+  float[] huef = new float[200];
+  float[] satf = new float[200];
+  float[] brightf = new float[200];
+  float[] opacityf = new float[200];
+  
+  
+    while(i < 200){
+    
+    //Geração de variáveis aleatórias
+    
+    x[i] = random(720);
+    y[i] = random(720);
+    Width[i] = random(360);
+    Height[i] = random(360);
+    huef[i] = random(360);
+    satf[i] = random(100);
+    brightf[i] = random(100);
+    opacityf[i] = random(100);
+    if (opacityf[i] < 25) opacityf[i] = 0;
+    
+    i = i + 1;}
+  
+  
+  for (k = 0; k < x.length - 1; k = k + 1 )
+  print (distancia (x, y, Width, Height, huef, satf,brightf, opacityf)[k]);
+ /* xl = med(x);
+  yl = med(y);
+  Widthl = med(Width);
+  Heightl = med(Height);
+  huel = med(huef);
+  satl = med(satf);
+  brigthl = med(brightf );
+  opacityl = med(opacityf);*/
+  
+
+}
+
+  /*a = quadrado (x) [0];
+  b = quadrado (y);
+  c = quadrado (Width);
+  d = quadrado ( Heigth);
+  e = quadrado (huef);
+  f = quadrado (satf);
+  g = quadrado (brigthf);
+  h = quadrado (opacityf);*/
