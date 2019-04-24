@@ -96,7 +96,7 @@ float [] distancia_final (float []d_l, float []votos){
    
    for (a = 0; a < votos.length; a = a + 1)
      distancia_final[a] = sqrt( sq(1 - d_l[a]) + sq(1 - votos[a]/max));  
-  
+  //ou  distancia_final[a] = sqrt( sq(d_l[a]) + sq(votos[a]/max));, para ter distancias diretamente proporcionais a diversidade  
   return distancia_final;
 }
 
