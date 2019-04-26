@@ -217,7 +217,6 @@ float[]mx1, float[]my1, float[] mx2, float[]my2, float[]mx3, float[] my3, float[
 
 void setup() {
   size(720,720);
-  background(0);
   
   while(i < 9){
     j = 0;
@@ -245,30 +244,62 @@ void setup() {
 
   int imagens = x1.length;
   
-
-
-  
-  for (int i = 0; i < imagens ; i = i + 1){
-    int pai, mae;
-     float filho [][] = new float [10][125]; 
-    pai = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
-    mae = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
-    filho = child(x1[pai], y1[pai], x2[pai], y2[pai], x3[pai], y3[pai], huef[pai], satf[pai], brightf[pai], opacityf[pai],
-      x1[mae], y1[mae], x2[mae], y2[mae], x3[mae], y3[mae], huef[mae], satf[mae], brightf[mae], opacityf[mae]);
+  for (int geracao = 0; geracao < 5; geracao++){
+    i = 0;
+    while(i < 8){
+      j = 0;
     
-    x1[i] = filho[0];
-    y1[i] = filho[1];
-    x2[i] = filho[2];
-    y2[i] = filho[3];
-    x3[i] = filho[4];
-    y3[i] = filho[5];
-    huef [i] = filho[6];
-    satf [i] = filho[7];
-    brightf [i] = filho[8];
-    opacityf[i] = filho[9];
+      //Gera imagens 720x720
+      triangulo[i] = createGraphics(720,720,JAVA2D);
+      triangulo[i].beginDraw();
+    
+      //Modo de Cor HSV
+      triangulo[i].colorMode(HSB, 360, 100, 100, 100);
+    
+      //Background de cor aleatória
+      triangulo[i].background(random(360), random(100), random(100), random(100));
+    
+      while (j < 125){  //Quantidade de triangulos
+      
+        triangulo[i].noStroke();
+      
+        //Desenha os triangulos
+        triangulo[i].fill(huef[i][j], satf[i][j], brightf[i][j], opacityf[i][j]);
+        triangulo[i].triangle(x1[i][j], y1[i][j], x2[i][j], y2[i][j], x3[i][j], y3[i][j]);
+    
+        j = j + 1;
+      }
+    
+      triangulo[i].endDraw();
+    
+      //Salva as imagens
+      triangulo[i].save("/Geracao" + geracao + "/Triangulos" + i + ".png");
+    
+      i = i + 1;
+    }
+    
+    for (int i = 0; i < imagens ; i = i + 1){
+      int pai, mae;
+      float filho [][] = new float [10][125]; 
+      pai = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
+      mae = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
+      filho = child(x1[pai], y1[pai], x2[pai], y2[pai], x3[pai], y3[pai], huef[pai], satf[pai], brightf[pai], opacityf[pai],
+        x1[mae], y1[mae], x2[mae], y2[mae], x3[mae], y3[mae], huef[mae], satf[mae], brightf[mae], opacityf[mae]);
+    
+      x1[i] = filho[0];
+      y1[i] = filho[1];
+      x2[i] = filho[2];
+      y2[i] = filho[3];
+      x3[i] = filho[4];
+      y3[i] = filho[5];
+      huef [i] = filho[6];
+      satf [i] = filho[7];
+      brightf [i] = filho[8];
+      opacityf[i] = filho[9];
+    }
   }
- 
-
+  //Coloca a última imagem na janela
+  image(triangulo[7], 0, 0);
 }
 
   /*//println (rank(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));
