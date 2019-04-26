@@ -1,6 +1,6 @@
 //Array das imagens
 
-PGraphics[] triangulo = new PGraphics[9];
+//PGraphics[] triangulo = new PGraphics[9];
 
 //Posição cartesiana
 
@@ -245,8 +245,9 @@ void setup() {
   int imagens = x1.length;
   
   for (int geracao = 0; geracao < 5; geracao++){
+    PGraphics[] triangulo = new PGraphics[9];
     i = 0;
-    while(i < 8){
+    while(i < 9){
       j = 0;
     
       //Gera imagens 720x720
@@ -297,9 +298,10 @@ void setup() {
       brightf [i] = filho[8];
       opacityf[i] = filho[9];
     }
+    //Coloca a última imagem na janela
+    if (geracao == 4)
+      image(triangulo[7], 0, 0);
   }
-  //Coloca a última imagem na janela
-  image(triangulo[7], 0, 0);
 }
 
   /*//println (rank(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));

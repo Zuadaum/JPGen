@@ -56,7 +56,7 @@ void setup() {
 void draw() {
   
   i = 0;
-  while(i < 8){
+  while(i < 9){
     
     j = 0;
     
