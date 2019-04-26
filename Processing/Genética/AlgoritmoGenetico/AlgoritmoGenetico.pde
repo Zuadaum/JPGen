@@ -1,22 +1,22 @@
 //Array das imagens
 
-PGraphics[] triangulo = new PGraphics[8];
+PGraphics[] triangulo = new PGraphics[9];
 
 //Posição cartesiana
 
-float[][] x1 = new float[8][125];
-float[][] y1 = new float[8][125];
-float[][] x2 = new float[8][125];
-float[][] y2 = new float[8][125];
-float[][] x3 = new float[8][125];
-float[][] y3 = new float[8][125];
+float[][] x1 = new float[9][125];
+float[][] y1 = new float[9][125];
+float[][] x2 = new float[9][125];
+float[][] y2 = new float[9][125];
+float[][] x3 = new float[9][125];
+float[][] y3 = new float[9][125];
 
 //Variáveis do fill
 
-float[][] huef = new float[8][125];
-float[][] satf = new float[8][125];
-float[][] brightf = new float[8][125];
-float[][] opacityf = new float[8][125];
+float[][] huef = new float[9][125];
+float[][] satf = new float[9][125];
+float[][] brightf = new float[9][125];
+float[][] opacityf = new float[9][125];
 
 
 
@@ -31,7 +31,7 @@ int j = 0;
 
 // tira a media de uma lista
 float med (float[] lista){
-  int k, a; 
+  int k, a;
   float somat = 0, med;
   k = lista.length;
   for (a = 0; a < k; a = a + 1){
@@ -56,26 +56,20 @@ float[] medl (float[][] lista){
 
 
 // essa funcao da a lista do quadrado da porcentagem do desvio com base no maior valor.
-float[] quadrado (float[] l){
-  float []dif = new float [l.length +1];
+float[] quadrado (float[] lista){
+  float []dif = new float [lista.length +1];
   int a;
-  float max = 0;
-  
-  //ve qual eh o valor mais alto da lista
-  for (a = 0; a < l.length; a = a + 1)
-    if (max < l[a])
-      max = l[a];
   
   //tira a diferencia 
-  for (a = 0; a < l.length; a = a + 1)
-    if (l[a] < med(l))
-      dif[a] = (med(l) - l[a]);
+  for (a = 0; a < lista.length; a = a + 1)
+    if (lista[a] < med(lista))
+      dif[a] = (med(lista) - lista[a]);
     else
-      dif[a] = (l[a] - med(l));
+      dif[a] = (lista[a] - med(lista));
       
   //deixa o resultado como um numero entre 0 e 1    
-  for (a = 0; a < l.length; a = a + 1)
-    dif[a] = dif[a]/max;
+  for (a = 0; a < lista.length; a = a + 1)
+    dif[a] = dif[a]/max(lista);
     dif[a] = sq(dif[a]);
     
   return dif;
@@ -95,34 +89,29 @@ float []distancia_quad (float[][] x1, float[][] y1, float[][] x2, float[][] y2, 
 }
 
 
-float [] distancia_final (float []d_l, float []votos){
+float [] distancia_final (float []distancia_lista, float []votos){
    float []distancia_final = new float [votos.length];
-   int a, b;
-   float max = 0;
-   for (b = 0; b < votos.length; b = b + 1)
-        if (votos[b] > max)
-          max = votos[b];
-   
+   int a;   
    
    for (a = 0; a < votos.length; a = a + 1)
      //distancia_final[a] = sqrt( sq(1 - d_l[a]) + sq(1 - votos[a]/max));  
-     distancia_final[a] = sqrt( sq(d_l[a]) + sq(votos[a]/max)); //para ter distancias diretamente proporcionais a diversidade  
+     distancia_final[a] = sqrt( sq(distancia_lista[a]) + sq(votos[a]/max(votos))); //As distâncias serão baseadas tanto na diversidade das imagens quanto na porcentagem da votação
   return distancia_final;
 }
 
 
 
 //devolve uma lista crescente do ranking
-int []rank (float []l) {
+int []rank (float []lista) {
     int a, b = 0, d, e;
     double c = 0;
-    int [] rank = new int [l.length];
-    double []var = new double [l.length];
-    for (e = 0; e < l.length; e = e + 1)
-      var[e] = l[e]; 
+    int [] rank = new int [lista.length];
+    double []var = new double [lista.length];
+    for (e = 0; e < lista.length; e = e + 1)
+      var[e] = lista[e]; 
 
-    for (a = 0; a < l.length; a = a + 1){     
-      for (c = 0, d = 0; d < l.length; d = d + 1){
+    for (a = 0; a < lista.length; a = a + 1){     
+      for (c = 0, d = 0; d < lista.length; d = d + 1){
         if (var[d] > c){
           c = var[d];
           b = d;
@@ -135,20 +124,20 @@ int []rank (float []l) {
   return rank;
 }
 
-
-int aleatorio (float []l){
+//Sorteia uma item da lista com base em pesos
+int sorteio (float []lista){
    float soma = 0,
    k,
    t = 0;
    int r = -1,
    p = 0;
-   for (int i = 0; i < l.length; i = i + 1)
-    soma = soma + l[i]; 
+   for (int i = 0; i < lista.length; i = i + 1)
+    soma = soma + lista[i]; 
    
    k = random (soma);
    
-   for (int i = 0; i < l.length && p == 0; i = i + 1){
-      t = t + l[i];
+   for (int i = 0; i < lista.length && p == 0; i = i + 1){
+      t = t + lista[i];
        if (k < t){
          r = i;
          p = 1;
@@ -180,6 +169,7 @@ float[]mx1, float[]my1, float[] mx2, float[]my2, float[]mx3, float[] my3, float[
     float[] copacityf = new float[125];
 
     for (int i = 0; i < 125; i = i + 1){
+      //A criança recebe cada círculo ou inteiramente da mãe ou inteiramente do pai
       k = int(random (2));
       if (k == 0) {
         cx1[i] = px1[i];
@@ -229,7 +219,7 @@ void setup() {
   size(720,720);
   background(0);
   
-  while(i < 8){
+  while(i < 9){
     j = 0;
     while(j < 125){
     
@@ -261,8 +251,8 @@ void setup() {
   for (int i = 0; i < imagens ; i = i + 1){
     int pai, mae;
      float filho [][] = new float [10][125]; 
-    pai = aleatorio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
-    mae = aleatorio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
+    pai = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
+    mae = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
     filho = child(x1[pai], y1[pai], x2[pai], y2[pai], x3[pai], y3[pai], huef[pai], satf[pai], brightf[pai], opacityf[pai],
       x1[mae], y1[mae], x2[mae], y2[mae], x3[mae], y3[mae], huef[mae], satf[mae], brightf[mae], opacityf[mae]);
     
@@ -282,9 +272,9 @@ void setup() {
 }
 
   /*//println (rank(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));
-  println (aleatorio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));
-  println (aleatorio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));
-  println (aleatorio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));*/
+  println (sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));
+  println (sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));
+  println (sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));*/
 
         /*px1[]
         py1[]
