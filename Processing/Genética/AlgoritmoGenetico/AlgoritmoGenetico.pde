@@ -1,6 +1,6 @@
 //Array das imagens
 
-//PGraphics[] triangulo = new PGraphics[9];
+PGraphics[] triangulo = new PGraphics[9];
 
 //Posição cartesiana
 
@@ -245,9 +245,12 @@ void setup() {
   int imagens = x1.length;
   
   for (int geracao = 0; geracao < 5; geracao++){
-    PGraphics[] triangulo = new PGraphics[9];
     i = 0;
-    while(i < 9){
+    
+    for (int k = 0; k < 9; k = k + 1)
+      votos[k] = random(100);
+    
+    while(i < 8){
       j = 0;
     
       //Gera imagens 720x720
@@ -282,8 +285,10 @@ void setup() {
     for (int i = 0; i < imagens ; i = i + 1){
       int pai, mae;
       float filho [][] = new float [10][125]; 
-      pai = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
-      mae = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
+      //pai = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
+      pai = sorteio(distancia_final(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf), votos));
+      //mae = sorteio(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf));
+      mae = sorteio(distancia_final(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf), votos));
       filho = child(x1[pai], y1[pai], x2[pai], y2[pai], x3[pai], y3[pai], huef[pai], satf[pai], brightf[pai], opacityf[pai],
         x1[mae], y1[mae], x2[mae], y2[mae], x3[mae], y3[mae], huef[mae], satf[mae], brightf[mae], opacityf[mae]);
     
@@ -298,10 +303,9 @@ void setup() {
       brightf [i] = filho[8];
       opacityf[i] = filho[9];
     }
-    //Coloca a última imagem na janela
-    if (geracao == 4)
-      image(triangulo[7], 0, 0);
   }
+  //Coloca a última imagem na janela
+  image(triangulo[7], 0, 0);
 }
 
   /*//println (rank(distancia_quad (x1, y1, x2, y2, x3, y3, huef, satf, brightf, opacityf)));
